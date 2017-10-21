@@ -152,13 +152,14 @@
                 "<td>"+formatedDL+"</td>"+
                 "<td>"+todolist.status+"</td>"+
                 "<td>"+
-                  "<button class='finish' style='float:left' "+tombol+">Finished</button> "+
-                  "<button class='delete' style='float:right'>Delete</button>"+
+                  "<button id='finish"+index+"' style='float:left' "+tombol+">Finished</button> "+
+                  "<button id='delete"+index+"' style='float:right'>Delete</button>"+
                 "</td>"+
               "</tr>"
             )
 
-            Action.delete(todolist._id)
+            Action.update(todolist._id, index)
+            Action.delete(todolist._id, index)
 
           })
         },
@@ -171,20 +172,31 @@
 
     // Action
     let Action = {
-      delete: (id) => {
-        $(".delete").on('click', function(){
+      delete: (id, index) => {
+        $("#delete"+index).on('click', function(){
           $.ajax({
-            type: 'post',
-            url: 'http://localhost:3000/users/login',
-            data: inputData,
+            type: 'delete',
+            url: 'http://localhost:3000/todos/delete/'+id,
             dataType: 'json',
             success: function(response) {
-              if (!response.data) {
-                $("#logerror").html(response.message)
-              } else {
-                localStorage.setItem('token', response.data)
-                window.location.reload()
-              }
+              window.location.reload()
+            },
+
+            fail: function() {
+              console.log("ERROR")
+            }
+          })
+        })
+      },
+
+      update: (id, index) => {
+        $("#finish"+index).on('click', function(){
+          $.ajax({
+            type: 'put',
+            url: 'http://localhost:3000/todos/update/'+id,
+            dataType: 'json',
+            success: function(response) {
+              window.location.reload()
             },
 
             fail: function() {
