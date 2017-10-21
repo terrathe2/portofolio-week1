@@ -1,5 +1,7 @@
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
+const jwtDecode = require('jwt-decode');
+const moment = require('moment')
 
 module.exports = {
   mongoAuth: {
@@ -34,6 +36,29 @@ module.exports = {
     }
 
     return Obj;
+  },
+
+  dataTodo: (reqBody, username) => {
+    let Obj = {
+      username: username,
+      description: reqBody.description,
+      createdAt: new Date(),
+      status: ''
+    }
+
+    if(reqBody.deadline) {
+      Obj.deadline = moment(reqBody.deadline).format('YYYY-MM-D')
+    } else {
+      Obj.deadline = null
+    }
+
+    return Obj
+  },
+
+  getUsername: function(token) {
+    let decode = jwtDecode(token)
+
+    return decode
   }
 
   // authenticate: (req, res, next) => {

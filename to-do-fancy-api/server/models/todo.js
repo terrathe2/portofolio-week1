@@ -8,10 +8,11 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
     ref: 'User'
-  }
+  },
   description: String,
   createdAt: Date,
   deadline: Date,
+  status: String
 })
 
 const todos = mongoose.model('Todo', schema)

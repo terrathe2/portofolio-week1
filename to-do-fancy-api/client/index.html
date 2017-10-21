@@ -34,7 +34,20 @@
     </form>
 
     <div id="content" style="display:none">
-      HAI
+      <h2>My ToDo List</h2>
+      <table class="todolist" border="1">
+        <thead>
+          <th>No.</th>
+          <th>Description</th>
+          <th>Created Date</th>
+          <th>Alarm At</th>
+          <th>Status</th>
+          <th>Aksi</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
     </div>
   </body>
   <script type="text/javascript">
@@ -103,6 +116,84 @@
         }
       })
     })
+
+    $('.todolist').ready(function(){
+      let token = localStorage.getItem('token')
+      $.ajax({
+        type: 'get',
+        url: 'http://localhost:3000/todos/'+token,
+        dataType: 'json',
+        success: function(response) {
+          console.log(response);
+          let tombol = ''
+          let arrMonth = ['January','February','March','April','May','June','July','August','September','October','November','December']
+          response.data.forEach((todolist, index) => {
+            if (todolist.status){
+              tombol = 'hidden'
+            } else {
+              tombol = ''
+            }
+
+            let createdAt = new Date(todolist.createdAt);
+            let formatedCA = createdAt.getDate()+" "+arrMonth[createdAt.getMonth()]+" "+createdAt.getFullYear()
+            let formatedDL = "Not Set"
+
+            if (todolist.deadline != null) {
+              let deadline = new Date(todolist.deadline);
+              formatedDL = deadline.getDate()+" "+arrMonth[deadline.getMonth()]+" "+deadline.getFullYear()
+            }
+
+            $('tbody').append(
+              "<tr>"+
+                "<td>"+(index+1)+".</td>"+
+                // "<td>"+todolist._id+".</td>"+
+                "<td>"+todolist.description+"</td>"+
+                "<td>"+formatedCA+"</td>"+
+                "<td>"+formatedDL+"</td>"+
+                "<td>"+todolist.status+"</td>"+
+                "<td>"+
+                  "<button class='finish' style='float:left' "+tombol+">Finished</button> "+
+                  "<button class='delete' style='float:right'>Delete</button>"+
+                "</td>"+
+              "</tr>"
+            )
+
+            Action.delete(todolist._id)
+
+          })
+        },
+
+        fail: function() {
+          console.log("ERROR")
+        }
+      })
+    })
+
+    // Action
+    let Action = {
+      delete: (id) => {
+        $(".delete").on('click', function(){
+          $.ajax({
+            type: 'post',
+            url: 'http://localhost:3000/users/login',
+            data: inputData,
+            dataType: 'json',
+            success: function(response) {
+              if (!response.data) {
+                $("#logerror").html(response.message)
+              } else {
+                localStorage.setItem('token', response.data)
+                window.location.reload()
+              }
+            },
+
+            fail: function() {
+              console.log("ERROR")
+            }
+          })
+        })
+      }
+    }
 
     // email validation regex
     $('#email').on('keypress', function(){
