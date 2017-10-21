@@ -1,0 +1,216 @@
+*{
+	font-family:georgia;
+}
+
+html, body, #content{
+	height:100%;
+}
+
+a{
+	text-decoration: none;
+}
+
+@font-face {
+	font-family: Georgia;
+	src: url(../fonts/georgia.ttf)
+}
+
+.garispemisah{
+	float:left;
+	height:10.5%;
+	width:100%;
+	background:url("../images/background-white.jpg") no-repeat;
+	background-size:100% 100%;
+}
+
+.judulcontent{
+	text-align:center;
+	color:black;
+}
+
+.judulmerah{
+	color:red;
+}
+
+body{
+	width:100%;
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+/* Header */
+
+header{
+	float:left;
+	position:fixed;
+	top:0px;
+	width:100%;
+	z-index:50;
+}
+
+#logo{
+	position:relative;
+	left:1%;
+	width:10%;
+	z-index:100;
+}
+
+nav{
+	position:absolute;
+	top:0px;
+	width:100%;
+	background:black;
+	text-align:right;
+	box-shadow: 0 15px 10px -5px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 15px 10px -5px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 15px 10px -5px rgba(0,0,0,0.5);
+	-o-box-shadow: 0 15px 10px -5px rgba(0,0,0,0.5);
+}
+
+nav ul{
+	list-style:none;
+	display:inline;
+}
+
+nav ul li{
+	width: auto;
+	/*margin-top:1%;*/
+	/*padding:1.5%;*/
+	display:inline-block;
+	/*color:red;*/
+}
+
+nav ul li div{
+	/*width: auto;*/
+	/*margin-top: 1%;*/
+	padding: 30px;
+	/*display:inline-block;*/
+	color:red;
+}
+
+nav ul li div:hover{
+	color:yellow;
+	transition:all 1s ease;
+	-webkit-transition:all 1s ease;
+	-moz-transition:all 1s ease;
+	-o-transition:all 1s ease;
+}
+
+/* Content */
+
+#content{
+	float:left;
+	width:100%;
+}
+
+#home{
+	float:left;
+	width:100%;
+	height:100%;
+	background:url("../images/background-white.jpg") no-repeat;
+	background-size:100% 100%;
+}
+
+#home img{
+	width:100%;
+	height:100%;
+	position:relative;
+	filter:blur(7px);
+	opacity:0.8;
+	z-index:2;
+}
+
+#home h1{
+	width:100%;
+	position:absolute;
+	top:45%;
+	z-index:3;
+	text-align:center;
+	color:white;
+}
+
+#aboutme{
+	float:left;
+	width:100%;
+	height:100%;
+	background:url("../images/background-white.jpg") no-repeat;
+	background-size:100% 100%;
+}
+
+#foto{
+	float:left;
+	width:20%;
+	height:55%;
+	margin: 0 5% 0 10%;
+	border:1px solid white;
+	border-radius:5px;
+}
+
+#foto img{
+	width: 100%;
+	height: 100%;
+	border-radius:5px;
+}
+
+#foto:hover{
+	box-shadow: 1px 1px 10px rgba(255,0,0,0.7);
+	-webkit-box-shadow: 1px 1px 10px rgba(255,0,0,0.7);
+	-moz-box-shadow: 1px 1px 10px rgba(255,0,0,0.7);
+	-o-box-shadow: 1px 1px 10px rgba(255,0,0,0.7);
+	transition: all 1s ease;
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+}
+
+#biodata{
+	float:left;
+	width:60%;
+}
+
+#biodata img{
+	width: 8%;
+	position: absolute;
+}
+
+
+#aboutme table{
+	width:50%;
+	margin-left:5%;
+	margin-top:8%;
+}
+
+.tdset{
+	padding:1%;
+}
+
+.tdhead{
+	font-weight:bold;
+}
+
+#projects{
+	float:left;
+	width:100%;
+	height:100%;
+	background:url("../images/background-white.jpg") no-repeat;
+	background-size:100% 100%;
+}
+
+/* Footer */
+
+footer{
+	float:left;
+	width:98%;
+	font-weight:bold;
+	padding:1%;
+	position:fixed;
+	bottom:0px;
+	text-align:center;
+	background-color:black;
+	color:red;
+	z-index:50;
+	box-shadow: 0 -15px 10px -5px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 -15px 10px -5px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 -15px 10px -5px rgba(0,0,0,0.5);
+	-o-box-shadow: 0 -15px 10px -5px rgba(0,0,0,0.5);
+}

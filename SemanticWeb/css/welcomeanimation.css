@@ -1,0 +1,230 @@
+#a{
+	animation: a 2s alternate infinite;
+	-webkit-animation: a 2s alternate infinite;
+	-moz-animation: a 2s alternate infinite;
+	-o-animation: a 2s alternate infinite;
+}
+
+#b{
+	animation: b 2s alternate infinite;
+	-webkit-animation: b 2s alternate infinite;
+	-moz-animation: b 2s alternate infinite;
+	-o-animation: b 2s alternate infinite;
+}
+
+#c{
+	animation: c 2s alternate infinite;
+	-webkit-animation: c 2s alternate infinite;
+	-moz-animation: c 2s alternate infinite;
+	-o-animation: c 2s alternate infinite;
+}
+
+#d{
+	animation: d 2s alternate infinite;
+	-webkit-animation: d 2s alternate infinite;
+	-moz-animation: d 2s alternate infinite;
+	-o-animation: d 2s alternate infinite;
+}
+
+#e{
+	animation: e 2s alternate infinite;
+	-webkit-animation: e 2s alternate infinite;
+	-moz-animation: e 2s alternate infinite;
+	-o-animation: e 2s alternate infinite;
+}
+
+#f{
+	animation: f 2s alternate infinite;
+	-webkit-animation: f 2s alternate infinite;
+	-moz-animation: f 2s alternate infinite;
+	-o-animation: f 2s alternate infinite;
+}
+
+#g{
+	animation: g 2s alternate infinite;
+	-webkit-animation: g 2s alternate infinite;
+	-moz-animation: g 2s alternate infinite;
+	-o-animation: g 2s alternate infinite;
+}
+
+#h{
+	animation: h 2s alternate infinite;
+	-webkit-animation: h 2s alternate infinite;
+	-moz-animation: h 2s alternate infinite;
+	-o-animation: h 2s alternate infinite;
+}
+	
+#i{
+	animation: i 2s alternate infinite;
+	-webkit-animation: i 2s alternate infinite;
+	-moz-animation: i 2s alternate infinite;
+	-o-animation: i 2s alternate infinite;
+}
+
+#j{
+	animation: j 2s alternate infinite;
+	-webkit-animation: j 2s alternate infinite;
+	-moz-animation: j 2s alternate infinite;
+	-o-animation: j 2s alternate infinite;
+}
+
+#k{
+	animation: k 2s alternate infinite;
+	-webkit-animation: k 2s alternate infinite;
+	-moz-animation: k 2s alternate infinite;
+	-o-animation: k 2s alternate infinite;
+}
+
+#l{
+	animation: l 2s alternate infinite;
+	-webkit-animation: l 2s alternate infinite;
+	-moz-animation: l 2s alternate infinite;
+	-o-animation: l 2s alternate infinite;
+}
+
+#m{
+	animation: m 2s alternate infinite;
+	-webkit-animation: m 2s alternate infinite;
+	-moz-animation: m 2s alternate infinite;
+	-o-animation: m 2s alternate infinite;
+}
+
+#n{
+	animation: n 2s alternate infinite;
+	-webkit-animation: n 2s alternate infinite;
+	-moz-animation: n 2s alternate infinite;
+	-o-animation: n 2s alternate infinite;
+}
+
+#o{
+	animation: o 2s alternate infinite;
+	-webkit-animation: o 2s alternate infinite;
+	-moz-animation: o 2s alternate infinite;
+	-o-animation: o 2s alternate infinite;
+}
+
+#p{
+	animation: p 2s alternate infinite;
+	-webkit-animation: p 2s alternate infinite;
+	-moz-animation: p 2s alternate infinite;
+	-o-animation: p 2s alternate infinite;
+}
+
+#q{
+	animation: q 2s alternate infinite;
+	-webkit-animation: q 2s alternate infinite;
+	-moz-animation: q 2s alternate infinite;
+	-o-animation: q 2s alternate infinite;
+}
+
+#r{
+	animation: r 2s alternate infinite;
+	-webkit-animation: r 2s alternate infinite;
+	-moz-animation: r 2s alternate infinite;
+	-o-animation: r 2s alternate infinite;
+}
+
+#s{
+	animation: s 2s alternate infinite;
+	-webkit-animation: s 2s alternate infinite;
+	-moz-animation: s 2s alternate infinite;
+	-o-animation: s 2s alternate infinite;
+}
+
+#t{
+	animation: t 2s alternate infinite;
+	-webkit-animation: t 2s alternate infinite;
+	-moz-animation: t 2s alternate infinite;
+	-o-animation: t 2s alternate infinite;
+}
+
+#u{
+	animation: u 2s alternate infinite;
+	-webkit-animation: u 2s alternate infinite;
+	-moz-animation: u 2s alternate infinite;
+	-o-animation: u 2s alternate infinite;
+}
+	
+@keyframes a{
+	0%{color:red; font-size:45px;}
+}
+
+@keyframes b{
+	5%{color:yellow;font-size:45px;}
+}
+
+@keyframes c{
+	10%{color:yellow;font-size:45px;}
+}
+
+@keyframes d{
+	15%{color:yellow;font-size:45px;}
+}
+
+@keyframes e{
+	20%{color:yellow;font-size:45px;}
+}
+
+@keyframes f{
+	25%{color:yellow;font-size:45px;}
+}
+
+@keyframes g{
+	30%{color:yellow;font-size:45px;}
+}
+
+@keyframes h{
+	35%{color:red;font-size:45px;}
+}
+
+@keyframes i{
+	40%{color:yellow;font-size:45px;}
+}
+
+@keyframes j{
+	45%{color:red;font-size:45px;}
+}
+
+@keyframes k{
+	50%{color:yellow;font-size:45px;}
+}
+
+@keyframes l{
+	55%{color:red;font-size:45px;}
+}
+
+@keyframes m{
+	60%{color:yellow;font-size:45px;}
+}
+
+@keyframes n{
+	65%{color:yellow;font-size:45px;}
+}
+
+@keyframes o{
+	70%{color:yellow;font-size:45px;}
+}
+
+@keyframes p{
+	75%{color:yellow;font-size:45px;}
+}
+
+@keyframes q{
+	80%{color:yellow;font-size:45px;}
+}
+
+@keyframes r{
+	85%{color:yellow;font-size:45px;}
+}
+
+@keyframes s{
+	90%{color:yellow;font-size:45px;}
+}
+
+@keyframes t{
+	95%{color:yellow;font-size:45px;}
+}
+
+@keyframes u{
+	100%{color:yellow;font-size:45px;}
+}
