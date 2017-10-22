@@ -57,6 +57,7 @@
       });
     }
 
+
     window.fbAsyncInit = function() {
       FB.init({
         appId      : 195417424336474,
@@ -66,6 +67,15 @@
       });
       FB.AppEvents.logPageView();
     };
+
+    function logout(){
+      FB.logout(function(resp){
+        console.log("User is now logged out");
+      })
+
+      localStorage.removeItem('token')
+      window.location.reload()
+    }
 
     (function(d, s, id){
        var js, fjs = d.getElementsByTagName(s)[0];
@@ -99,7 +109,7 @@
     </form>
 
     <div id="content" >
-      <button id="logout" onclick="return logout()">Logout</button>
+      <button id="logout" onclick="javascript:logout()">Logout</button>
       <h2>My ToDo List</h2>
       <table class="todolist">
         <tbody>
@@ -111,233 +121,228 @@
     </div>
     <form id="inputform" method="post">
       <textarea name="description" rows="8" cols="50" placeholder="Description" required></textarea><br><br>
-      <input type="date" name="deadline" placeholder="Deadline Date ~ YYYY/MM/DD"><br><br>
+      <input type="date" name="deadline" > <span>YYYY/MM/DD</span><br><br>
       <input type="submit" name="submit" value="Add Todo">
     </form>
-  </body>
 
-  <script type="text/javascript">
+    <!-- ~~~~~~~~~~~~~~~~~~~~script~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-    $(document).ready(function(){
-      if (localStorage.getItem('token')) {
-        $('#content').show(200)
-      } else {
-        $('#loginform').show(200)
-      }
-
-      $('#logout').on('click', function(){
-        localStorage.removeItem('token')
-        FB.logout()
-
-        window.location.reload()
-      })
-
-      // Login
-      $('#loginform').on('submit', function(ev) {
-        ev.preventDefault();
-
-        let inputData = {
-          username: $('input[name=username]').val(),
-          password: $('input[name=password]').val()
+    <script>
+      $(document).ready(function(){
+        if (localStorage.getItem('token')) {
+          $('#content').show(200)
+        } else {
+          $('#loginform').show(200)
         }
 
-        $.ajax({
-          type: 'post',
-          url: 'http://localhost:3000/users/login',
-          data: inputData,
-          dataType: 'json',
-          success: function(response) {
-            if (!response.data) {
-              $("#logerror").html(response.message)
-            } else {
-              localStorage.setItem('token', response.data)
-              window.location.reload()
+
+
+        // Login
+        $('#loginform').on('submit', function(ev) {
+          ev.preventDefault();
+
+          let inputData = {
+            username: $('input[name=username]').val(),
+            password: $('input[name=password]').val()
+          }
+
+          $.ajax({
+            type: 'post',
+            url: 'http://localhost:3000/users/login',
+            data: inputData,
+            dataType: 'json',
+            success: function(response) {
+              if (!response.data) {
+                $("#logerror").html(response.message)
+              } else {
+                localStorage.setItem('token', response.data)
+                window.location.reload()
+              }
+            },
+
+            fail: function() {
+              console.log("ERROR")
             }
-          },
-
-          fail: function() {
-            console.log("ERROR")
-          }
+          })
         })
-      })
 
-      // Register
-      $('#registerform').on('submit', function(ev) {
-        ev.preventDefault();
+        // Register
+        $('#registerform').on('submit', function(ev) {
+          ev.preventDefault();
 
-        let inputData = {
-          username: $('input[name=signusername]').val(),
-          password: $('input[name=signpassword]').val(),
-          email: $('input[name=signemail]').val()
-        }
+          let inputData = {
+            username: $('input[name=signusername]').val(),
+            password: $('input[name=signpassword]').val(),
+            email: $('input[name=signemail]').val()
+          }
 
-        $.ajax({
-          type: 'post',
-          url: 'http://localhost:3000/users/register',
-          data: inputData,
-          dataType: 'json',
-          success: function(response) {
-            if (!response.data) {
-              $("#signerror").html(response.message)
-            } else {
-              localStorage.setItem('token', response.data)
-              window.location.reload()
+          $.ajax({
+            type: 'post',
+            url: 'http://localhost:3000/users/register',
+            data: inputData,
+            dataType: 'json',
+            success: function(response) {
+              if (!response.data) {
+                $("#signerror").html(response.message)
+              } else {
+                localStorage.setItem('token', response.data)
+                window.location.reload()
+              }
+            },
+
+            fail: function() {
+              console.log("ERROR")
             }
-          },
-
-          fail: function() {
-            console.log("ERROR")
-          }
+          })
         })
-      })
 
-      // Input form
-      $('#inputform').on('submit', function(ev){
-        ev.preventDefault();
+        // Input form
+        $('#inputform').on('submit', function(ev){
+          ev.preventDefault();
 
-        let inputData = {
-          token: localStorage.getItem('token'),
-          description: $('textarea[name=description]').val(),
-          deadline: $('input[name=deadline]').val()
-        }
-        // console.log(inputData);
-        $.ajax({
-          type: 'post',
-          url: 'http://localhost:3000/todos/insert',
-          data: inputData,
-          dataType: 'json',
-          success: function(response){
-            console.log(response);
-            window.location.reload()
-          },
-          fail: function(){
-            console.log("ERROR");
+          let inputData = {
+            token: localStorage.getItem('token'),
+            description: $('textarea[name=description]').val(),
+            deadline: $('input[name=deadline]').val()
           }
+          // console.log(inputData);
+          $.ajax({
+            type: 'post',
+            url: 'http://localhost:3000/todos/insert',
+            data: inputData,
+            dataType: 'json',
+            success: function(response){
+              console.log(response);
+              window.location.reload()
+            },
+            fail: function(){
+              console.log("ERROR");
+            }
+          })
         })
-      })
 
-      $('.todolist').ready(function(){
-        let token = localStorage.getItem('token')
-        $.ajax({
-          type: 'get',
-          url: 'http://localhost:3000/todos/'+token,
-          dataType: 'json',
-          success: function(response) {
-            console.log(response);
-            if (response.data) {
-              let tombol = ''
-              let mark = ''
-              let arrMonth = ['January','February','March','April','May','June','July','August','September','October','November','December']
-              response.data.forEach((todolist, index) => {
-                if (todolist.status){
-                  tombol = 'hidden'
-                  mark = "<img src='assets/images/true.png' width='20px'>"
-                } else {
-                  tombol = ''
-                  mark = "<img src='assets/images/false.png' width='20px'>"
+        $('.todolist').ready(function(){
+          let token = localStorage.getItem('token')
+          $.ajax({
+            type: 'get',
+            url: 'http://localhost:3000/todos/'+token,
+            dataType: 'json',
+            success: function(response) {
+              console.log(response);
+              if (response.data) {
+                let tombol = ''
+                let mark = ''
+                let arrMonth = ['January','February','March','April','May','June','July','August','September','October','November','December']
+                response.data.forEach((todolist, index) => {
+                  if (todolist.status){
+                    tombol = 'hidden'
+                    mark = "<img src='assets/images/true.png' width='20px'>"
+                  } else {
+                    tombol = ''
+                    mark = "<img src='assets/images/false.png' width='20px'>"
+                  }
+
+                  let formatedDL = "Not Set"
+
+                  if (todolist.deadline != null) {
+                    let deadline = new Date(todolist.deadline);
+                    formatedDL = deadline.getDate()+" "+arrMonth[deadline.getMonth()]+" "+deadline.getFullYear()
+                  }
+
+                  $('tbody').append(
+                    "<tr>"+
+                      "<td>"+mark+"</td>"+
+                      // "<td>"+todolist._id+".</td>"+
+                      "<td>"+todolist.description+"</td>"+
+                      "<td> ~~~ </td>"+
+                      "<td>Deadline : "+formatedDL+"</td>"+
+                      "<td>"+
+                        "<button class='finish upd"+index+"' "+tombol+">Finished</button> "+
+                        "<button class='delete dlt"+index+"' >Delete</button>"+
+                      "</td>"+
+                    "</tr>"
+                  )
+
+                  Action.update(todolist._id, index)
+                  Action.delete(todolist._id, index)
+
+                })
+              }
+            },
+
+            fail: function() {
+              console.log("ERROR")
+            }
+          })
+        })
+
+        // Action
+        let Action = {
+          delete: (id, index) => {
+            $(".dlt"+index).on('click', function(){
+              $.ajax({
+                type: 'delete',
+                url: 'http://localhost:3000/todos/delete/'+id,
+                dataType: 'json',
+                success: function(response) {
+                  window.location.reload()
+                },
+
+                fail: function() {
+                  console.log("ERROR")
                 }
-
-                let formatedDL = "Not Set"
-
-                if (todolist.deadline != null) {
-                  let deadline = new Date(todolist.deadline);
-                  formatedDL = deadline.getDate()+" "+arrMonth[deadline.getMonth()]+" "+deadline.getFullYear()
-                }
-
-                $('tbody').append(
-                  "<tr>"+
-                    "<td>"+mark+"</td>"+
-                    // "<td>"+todolist._id+".</td>"+
-                    "<td>"+todolist.description+"</td>"+
-                    "<td> ~~~ </td>"+
-                    "<td>Deadline : "+formatedDL+"</td>"+
-                    "<td>"+
-                      "<button class='finish upd"+index+"' "+tombol+">Finished</button> "+
-                      "<button class='delete dlt"+index+"' >Delete</button>"+
-                    "</td>"+
-                  "</tr>"
-                )
-
-                Action.update(todolist._id, index)
-                Action.delete(todolist._id, index)
-
               })
-            }
+            })
           },
 
-          fail: function() {
-            console.log("ERROR")
+          update: (id, index) => {
+            $(".upd"+index).on('click', function(){
+              $.ajax({
+                type: 'put',
+                url: 'http://localhost:3000/todos/update/'+id,
+                dataType: 'json',
+                success: function(response) {
+                  window.location.reload()
+                },
+
+                fail: function() {
+                  console.log("ERROR")
+                }
+              })
+            })
+          }
+        }
+
+        // email validation regex
+        $('#email').on('keypress', function(){
+          let pattern = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+          if (!pattern.test(this.value)) {
+            $('#emailerr').html("<img src='assets/images/false.png' width='12px'> Invalid Email").css({"color":"red"}).show()
+          } else {
+            $('#emailerr').html("<img src='assets/images/true.png' width='12'> Cool Email!").css({"color": "green"}).show()
           }
         })
+
+        $('#register').on('click', function(){
+          $('#loginform').hide(200)
+          $('#registerform').show(200)
+        })
+
+        $('.back').on('click', function(){
+          $('#loginform').show(200)
+          $('#registerform').hide(200)
+        })
+
+        $('#togle').on('click', function(){
+          if ($(this).text() === "Show Add Todo Form"){
+            $(this).text("Hide Add Todo Form").css({'background-color':'white', 'color':'orange'})
+          } else {
+            $(this).text("Show Add Todo Form").css({'background-color':'orange', 'color':'white'})
+          }
+
+          $('#inputform').toggle(200)
+        })
       })
-
-      // Action
-      let Action = {
-        delete: (id, index) => {
-          $(".dlt"+index).on('click', function(){
-            $.ajax({
-              type: 'delete',
-              url: 'http://localhost:3000/todos/delete/'+id,
-              dataType: 'json',
-              success: function(response) {
-                window.location.reload()
-              },
-
-              fail: function() {
-                console.log("ERROR")
-              }
-            })
-          })
-        },
-
-        update: (id, index) => {
-          $(".upd"+index).on('click', function(){
-            $.ajax({
-              type: 'put',
-              url: 'http://localhost:3000/todos/update/'+id,
-              dataType: 'json',
-              success: function(response) {
-                window.location.reload()
-              },
-
-              fail: function() {
-                console.log("ERROR")
-              }
-            })
-          })
-        }
-      }
-
-      // email validation regex
-      $('#email').on('keypress', function(){
-        let pattern = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-        if (!pattern.test(this.value)) {
-          $('#emailerr').html("<img src='assets/images/false.png' width='12px'> Invalid Email").css({"color":"red"}).show()
-        } else {
-          $('#emailerr').html("<img src='assets/images/true.png' width='12'> Cool Email!").css({"color": "green"}).show()
-        }
-      })
-
-      $('#register').on('click', function(){
-        $('#loginform').hide(200)
-        $('#registerform').show(200)
-      })
-
-      $('.back').on('click', function(){
-        $('#loginform').show(200)
-        $('#registerform').hide(200)
-      })
-
-      $('#togle').on('click', function(){
-        if ($(this).text() === "Show Add Todo Form"){
-          $(this).text("Hide Add Todo Form").css({'background-color':'white', 'color':'orange'})
-        } else {
-          $(this).text("Show Add Todo Form").css({'background-color':'orange', 'color':'white'})
-        }
-
-        $('#inputform').toggle(200)
-      })
-
-    })
-  </script>
+    </script>
+  </body>
 </html>

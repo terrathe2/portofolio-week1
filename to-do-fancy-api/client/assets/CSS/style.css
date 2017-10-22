@@ -167,6 +167,12 @@ a.back:hover{
   box-shadow: 1px 1px 10px rgba(0,0,0,0.8);
 }
 
+#inputform span{
+  color: white;
+  font-weight: bold;
+  padding-left: 1%;
+}
+
 /* ---------------------content---------------------------------*/
 
 #content{
