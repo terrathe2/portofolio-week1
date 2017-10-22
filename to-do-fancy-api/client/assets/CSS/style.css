@@ -1,0 +1,138 @@
+*{
+  margin: auto;
+  padding: auto;
+}
+
+body{
+  width: 100%;
+  background: url('../images/todoapp.png') no-repeat fixed;
+  background-size: cover;
+}
+
+/*-------------FORM--------------------*/
+
+#loginform, #registerform, #content, #inputform{
+  display: none;
+}
+
+#loginform, #registerform, #inputform{
+  width: 20%;
+  margin: 13% 38%;
+  border-radius: 10%;
+  padding: 2%;
+  background-color: black;
+  opacity: 0.8;
+  color: white;
+  box-shadow: 1px 1px 20px rgba(0,0,0,1);
+}
+
+#loginform input[type='text'], #loginform input[type='password']{
+  width: 94%;
+  padding: 3%;
+  background: orange;
+  color: white;
+  font-weight: bold;
+  border: 0px;
+  text-align: center;
+}
+
+#loginform input[type='submit']{
+  float: left;
+  padding: 3%;
+  margin-right: 2%;
+  font-weight: bold;
+  border: 0px;
+  border-radius: 5%;
+  color: orange;
+  cursor: pointer;
+}
+
+#loginform input[type='submit']:hover{
+  background-color: orange;
+  color: white;
+  border-radius: 30%;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+}
+
+a#register{
+  float: right;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 2%;
+}
+
+a#register:hover{
+  color: orange;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+}
+
+#registerform{
+  padding-bottom: 4%;
+}
+
+#registerform input[type='text'], #registerform input[type='password']{
+  width: 94%;
+  padding: 3%;
+  background: orange;
+  color: white;
+  font-weight: bold;
+  border: 0px;
+  text-align: center;
+}
+
+#registerform input[type='email']{
+  width: 49%;
+  padding: 3%;
+  background: orange;
+  color: white;
+  font-weight: bold;
+  border: 0px;
+  text-align: center;
+}
+
+#emailerr{
+  width: 39%;
+  padding: 3%;
+}
+
+#registerform input[type='submit']{
+  float: left;
+  padding: 3%;
+  margin-right: 2%;
+  font-weight: bold;
+  border: 0px;
+  border-radius: 5%;
+  color: orange;
+  cursor: pointer;
+}
+
+#registerform input[type='submit']:hover{
+  background-color: orange;
+  color: white;
+  border-radius: 30%;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+}
+
+a.back{
+  float: right;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 2%;
+}
+
+a.back:hover{
+  color: orange;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+}

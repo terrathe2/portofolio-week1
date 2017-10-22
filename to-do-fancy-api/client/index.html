@@ -5,6 +5,7 @@
     <title>To Do Fancy API</title>
     <!-- <script type="text/javascript" href="/assets/JS/jquery.3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="/assets/CSS/style.css">
     <script
 			  src="https://code.jquery.com/jquery-3.2.1.min.js"
 			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -78,29 +79,26 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
 
-    <form id="loginform" style="display:none" method="post">
-      <span id="logerror"></span><br>
-      <label>Username</label><br>
-      <input type="text" name="username" placeholder="input your username here" required /><br>
-      <label>Password</label><br>
-      <input type="password" name="password" placeholder="input your password here" required /><br>
-      <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+    <form id="loginform" method="post">
+      <h2>Login</h2>
+      <span id="logerror"></span><br><br>
+      <input type="text" name="username" placeholder="Username" required /><br><br>
+      <input type="password" name="password" placeholder="Password" required /><br><br>
+      <fb:login-button size='xlarge' scope="public_profile,email" onlogin="checkLoginState();">.</fb:login-button>
       <!-- <a type="button" onclick="checkLoginState()" name="button">Facebook</a> -->
-      <input type="submit" value="Login"/> <a id="register" style="cursor:pointer;">Register</a>
+      <input type="submit" value="Login"/> <a id="register">Register</a>
     </form>
 
-    <form id="registerform" style="display:none" method="post">
-      <span id="signerror"></span><br>
-      <label>Username</label><br>
-      <input type="text" name="signusername" placeholder="input your username here" required /><br>
-      <label>Password</label><br>
-      <input type="password" name="signpassword" placeholder="input your password here" required /><br>
-      <label>Email</label><br>
-      <input id="email" type="email" name="signemail" placeholder="input your valid email here" required /> <span id="emailerr"></span><br>
-      <input type="submit" value="Register" /> <a class="back" style="cursor:pointer;">Back</a>
+    <form id="registerform" method="post">
+      <h2>Register</h2>
+      <span id="signerror"></span><br><br>
+      <input type="text" name="signusername" placeholder="Username" required /><br><br>
+      <input type="password" name="signpassword" placeholder="Password" required /><br><br>
+      <input id="email" type="email" name="signemail" placeholder="Email" required /> <span id="emailerr"></span><br><br>
+      <input type="submit" value="Register" /> <a class="back">Back</a>
     </form>
 
-    <div id="content" style="display:none">
+    <div id="content" >
       <button id="logout" onclic="return logout()">Logout</button>
       <h2>My ToDo List</h2>
       <table class="todolist">
@@ -109,9 +107,9 @@
         </tbody>
       </table>
       <button id="togle">Show Add Todo Form</button>
-      <form id="inputform" style="display:none" method="post">
+      <form id="inputform" method="post">
         <label>Description</label><br>
-        <textarea name="description" rows="8" cols="80" required></textarea><br>
+        <textarea name="description" rows="8" cols="50" required></textarea><br>
         <label>Alarm</label><br>
         <input type="date" name="deadline"><br>
         <input type="submit" name="submit" value="Add Todo">
@@ -318,11 +316,9 @@
       $('#email').on('keypress', function(){
         let pattern = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
         if (!pattern.test(this.value)) {
-          $('#emailerr').html("<img src='assets/images/false.png' width='12'> Invalid Email Address").css({"color":"red"}).show()
-          $("#email").css({"border":"2px solid red","border-radius":"5px","padding":"2px"})
+          $('#emailerr').html("<img src='assets/images/false.png' width='12px'> Invalid Email").css({"color":"red"}).show()
         } else {
           $('#emailerr').html("<img src='assets/images/true.png' width='12'> Cool Email!").css({"color": "green"}).show()
-          $("#email").css({"border":"2px solid green","border-radius":"5px","padding":"2px"})
         }
       })
 
