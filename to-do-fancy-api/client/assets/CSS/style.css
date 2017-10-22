@@ -15,7 +15,7 @@ body{
   display: none;
 }
 
-#loginform, #registerform, #inputform{
+#loginform, #registerform{
   width: 20%;
   margin: 13% 38%;
   border-radius: 10%;
@@ -135,4 +135,125 @@ a.back:hover{
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
+}
+
+#inputform{
+  width: 40%;
+  padding: 2%;
+  background: orange;
+  text-align: center;
+}
+
+#inputform textarea, #inputform input[type='date'], #inputform input[type='submit']{
+  text-align: center;
+  padding: 2%;
+  border: 0px;
+  font-size: 14px;
+}
+
+#inputform input[type='submit']{
+  cursor: pointer;
+  color: orange;
+  font-weight: bold;
+  background-color: white;
+}
+
+#inputform input[type='submit']:hover{
+  border-radius: 15%;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  box-shadow: 1px 1px 10px rgba(0,0,0,0.8);
+}
+
+/* ---------------------content---------------------------------*/
+
+#content{
+  width: 60%;
+  background: black;
+  padding: 2%;
+  opacity: 0.9;
+  text-align: center;
+}
+
+#content h2{
+  text-align: center;
+  background: orange;
+  padding: 1%;
+  color: white;
+}
+
+.todolist{
+  width: 60%;
+  color: white;
+}
+
+.todolist td{
+  padding: 1%;
+  text-align: center;
+}
+
+/*.todolist tr:nth-child(even) {
+  background-color: #f2f2f2
+}*/
+
+.finish, .delete{
+  border: 0px;
+  padding: 7%;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.finish:hover, .delete:hover{
+  border-radius: 20%;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  box-shadow: 1px 1px 5px rgba(1,1,1,0.8);
+}
+
+.finish{
+  float: left;
+  background-color: lightgreen;
+}
+
+.finish:hover{
+  background-color: white;
+  color: lightgreen;
+}
+
+.delete{
+  float: right;
+  background-color: red;
+}
+
+.delete:hover{
+  background-color: white;
+  color: red;
+}
+
+#togle{
+  border: 0px;
+  padding: 1%;
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#logout{
+  float: left;
+  border: 0px;
+  padding: 1.5%;
+  color: orange;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#logout:hover{
+  background-color: red;
+  color: white;
 }

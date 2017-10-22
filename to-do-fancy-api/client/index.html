@@ -99,28 +99,24 @@
     </form>
 
     <div id="content" >
-      <button id="logout" onclic="return logout()">Logout</button>
+      <button id="logout" onclick="return logout()">Logout</button>
       <h2>My ToDo List</h2>
       <table class="todolist">
         <tbody>
 
         </tbody>
-      </table>
+      </table><br>
       <button id="togle">Show Add Todo Form</button>
-      <form id="inputform" method="post">
-        <label>Description</label><br>
-        <textarea name="description" rows="8" cols="50" required></textarea><br>
-        <label>Alarm</label><br>
-        <input type="date" name="deadline"><br>
-        <input type="submit" name="submit" value="Add Todo">
-      </form>
-    </div>
 
+    </div>
+    <form id="inputform" method="post">
+      <textarea name="description" rows="8" cols="50" placeholder="Description" required></textarea><br><br>
+      <input type="date" name="deadline" placeholder="Deadline Date ~ YYYY/MM/DD"><br><br>
+      <input type="submit" name="submit" value="Add Todo">
+    </form>
   </body>
 
   <script type="text/javascript">
-
-
 
     $(document).ready(function(){
       if (localStorage.getItem('token')) {
@@ -252,12 +248,12 @@
                   "<tr>"+
                     "<td>"+mark+"</td>"+
                     // "<td>"+todolist._id+".</td>"+
-                    "<td class='desc toggle"+index+"'>"+todolist.description+"</td>"+
+                    "<td>"+todolist.description+"</td>"+
                     "<td> ~~~ </td>"+
-                    "<td>Alarm At : "+formatedDL+"</td>"+
+                    "<td>Deadline : "+formatedDL+"</td>"+
                     "<td>"+
-                      "<button class='finish upd"+index+"' style='float:left' "+tombol+">Finished</button> "+
-                      "<button class='delete dlt"+index+"' style='float:right'>Delete</button>"+
+                      "<button class='finish upd"+index+"' "+tombol+">Finished</button> "+
+                      "<button class='delete dlt"+index+"' >Delete</button>"+
                     "</td>"+
                   "</tr>"
                 )
@@ -334,9 +330,9 @@
 
       $('#togle').on('click', function(){
         if ($(this).text() === "Show Add Todo Form"){
-          $(this).text("Hide Add Todo Form")
+          $(this).text("Hide Add Todo Form").css({'background-color':'white', 'color':'orange'})
         } else {
-          $(this).text("Show Add Todo Form")
+          $(this).text("Show Add Todo Form").css({'background-color':'orange', 'color':'white'})
         }
 
         $('#inputform').toggle(200)
