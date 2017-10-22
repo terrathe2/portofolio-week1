@@ -13,18 +13,57 @@
     <!-- <script href="assets/JS/validate-email.js"></script> -->
   </head>
   <body>
+    <!-- Facebook SDK -->
+  <script type="text/javascript">
+    function statusChangeCallback(response) {
+      console.log(response);
+      if (response.status === 'connected') {
+        // Logged into your app and Facebook.
 
-    <script type="text/javascript">
+        let inputData = {
+          token: response.authResponse.accessToken,
+          userID: response.authResponse.userID
+        }
+
+        console.log(inputData);
+        $.ajax({
+          type: 'post',
+          url: 'http://localhost:3000/users/fblogin',
+          data: inputData,
+          dataType: 'json',
+          success: function(respon){
+            if (!respon.data) {
+              // console.log("HAI");
+              $("#logerror").html(respon.message)
+            } else {
+
+              localStorage.setItem('token', respon.data)
+              window.location.reload()
+            }
+          },
+          fail: function(){
+            console.log("ERROR");
+          }
+        })
+      } else {
+        $('#loginform').show(200)
+      }
+    }
+
+    function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+    }
+
     window.fbAsyncInit = function() {
       FB.init({
         appId      : 195417424336474,
         cookie     : true,
         xfbml      : true,
-        version    : 'v2.8'
+        version    : 'v2.10'
       });
       FB.AppEvents.logPageView();
-
-      // checkLoginState()
     };
 
     (function(d, s, id){
@@ -34,8 +73,8 @@
        js.src = "//connect.facebook.net/en_US/sdk.js";
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <!-- Facebook SDK -->
+  </script>
+
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
 
@@ -45,11 +84,8 @@
       <input type="text" name="username" placeholder="input your username here" required /><br>
       <label>Password</label><br>
       <input type="password" name="password" placeholder="input your password here" required /><br>
-      <!-- <fb:login-button
-        scope="public_profile,email"
-        onlogin="checkLoginState();">
-      </fb:login-button> -->
-      <button type="button" onclick="checkLoginState()" name="button">Facebook Login</button>
+      <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+      <!-- <a type="button" onclick="checkLoginState()" name="button">Facebook</a> -->
       <input type="submit" value="Login"/> <a id="register" style="cursor:pointer;">Register</a>
     </form>
 
@@ -86,42 +122,7 @@
 
   <script type="text/javascript">
 
-    function statusChangeCallback(response) {
-      console.log(response);
-      if (response.status === 'connected') {
-        // Logged into your app and Facebook.
-        let inputData = {
-          token: response.authResponse.accessToken,
-          userID: response.authResponse.userID
-        }
 
-        $.ajax({
-          type: 'post',
-          url: 'http://localhost:3000/users/fblogin',
-          data: inputData,
-          dataType: 'json',
-          success: function(respon){
-            if (!respon.data) {
-              $("#logerror").html(respon.message)
-            } else {
-              localStorage.setItem('token', respon.data)
-              window.location.reload()
-            }
-          },
-          fail: function(){
-            console.log("ERROR");
-          }
-        })
-      } else {
-        $('#loginform').show(200)
-      }
-    }
-
-    function checkLoginState() {
-      FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-      });
-    }
 
     $(document).ready(function(){
       if (localStorage.getItem('token')) {

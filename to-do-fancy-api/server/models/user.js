@@ -17,8 +17,7 @@ const schema = new mongoose.Schema({
   email: {
     type: String,
     required: true
-  },
-  fb: String
+  }
 })
 
 const users = mongoose.model('User', schema)

@@ -31,8 +31,7 @@ module.exports = {
       username: reqBody.username,
       password: password,
       secret: secret,
-      email: reqBody.email,
-      fb: null
+      email: reqBody.email
     }
 
     return Obj;
