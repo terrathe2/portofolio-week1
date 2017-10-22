@@ -16,8 +16,7 @@ const schema = new mongoose.Schema({
   secret: String,
   email: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   fb: String
 })
