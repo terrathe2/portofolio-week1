@@ -4,8 +4,8 @@ const url = "mongodb://admin:admin@localhost:27017/todo" // with mongoDB role au
 mongoose.connect(url, helper.mongoAuth)
 
 const schema = new mongoose.Schema({
-  username: {
-    type: String,
+  userid: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'User'
   },

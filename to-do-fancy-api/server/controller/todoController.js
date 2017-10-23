@@ -3,8 +3,8 @@ const helper = require('../helper/helper')
 
 module.exports = {
   findAll: (req, res) => {
-    let decode = helper.getUsername(req.params.token)
-    Todo.find({username: decode.username}).sort('description').then((rowsTodo) => {
+    let decode = helper.getId(req.params.token)
+    Todo.find({userid: decode.id}).populate('userid').sort('description').then((rowsTodo) => {
       if (rowsTodo.length != 0) {
         res.json({
           message: "Berhasil Tampil Semua list",
@@ -23,8 +23,8 @@ module.exports = {
   },
 
   insert: (req, res) => {
-    let decode = helper.getUsername(req.body.token)
-    let data = helper.dataTodo(req.body, decode.username)
+    let decode = helper.getId(req.body.token)
+    let data = helper.dataTodo(req.body, decode.id)
     Todo(data).save().then((result) => {
       res.json({
         message: "Berhasil Menambahkan",

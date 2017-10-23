@@ -5,10 +5,12 @@ const jwt = require('jsonwebtoken');
 module.exports = {
   login: (req, res) => {
     User.findOne({username: req.body.username}).then((result) => {
+      // console.log(result);
       if (result) {
         let password = helper.secretHash(result.secret, req.body.password)
         if (password === result.password) {
           let token = jwt.sign({
+            id: result._id,
             username: result.username
           }, 'hacktiv8');
           res.json({
@@ -34,6 +36,7 @@ module.exports = {
 
     User(helper.dataUser(req.body, secret, secretPassword)).save().then((rowUser) => {
       let token = jwt.sign({
+        id: rowUser._id,
         username: rowUser.username
       }, 'hacktiv8');
 

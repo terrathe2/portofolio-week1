@@ -38,9 +38,9 @@ module.exports = {
     return Obj;
   },
 
-  dataTodo: (reqBody, username) => {
+  dataTodo: (reqBody, userid) => {
     let Obj = {
-      username: username,
+      userid: userid,
       description: reqBody.description,
       createdAt: new Date(),
       status: ''
@@ -55,7 +55,7 @@ module.exports = {
     return Obj
   },
 
-  getUsername: function(token) {
+  getId: function(token) {
     let decode = jwtDecode(token)
 
     return decode
