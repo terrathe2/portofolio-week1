@@ -29,4 +29,4 @@ ToDo Fancy
 |<div style='color:cyan'>/todos/delete/:id</div>|** DELETE ** |Delte todo list based on ID                        |
 
 #### NB :
-I'm using cron job for email notification, if deadline has been set and status not finish. Email should be sent 1 day before deadline
+I'm using cron job for email notification, if deadline has been set and status not finish. Email should be sent 1 day before deadline on 06:00:00 in the morning
