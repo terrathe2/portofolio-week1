@@ -191,13 +191,17 @@ a.back:hover{
 }
 
 .todolist{
-  width: 60%;
+  width: 65%;
   color: white;
 }
 
 .todolist td{
   padding: 1%;
   text-align: center;
+}
+
+.todolist td img{
+  width: 20px;
 }
 
 /*.todolist tr:nth-child(even) {
