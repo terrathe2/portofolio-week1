@@ -66,13 +66,15 @@
           buttons: true,
           dangerMode: true,
         }).then((out) => {
-          FB.logout(function(resp){
-            console.log("User is now logged out");
-          })
+          if (out) {
+            FB.logout(function(resp){
+              console.log("User is now logged out");
+            })
 
-          localStorage.removeItem('token')
-          swal("Byeeeeee Darling", "I'll be waiting", "success")
-          window.location.reload()
+            localStorage.removeItem('token')
+            swal("Byeeeeee Darling", "I'll be waiting", "success")
+            window.location.reload()
+          }
         })
       }
 
@@ -98,6 +100,7 @@
 
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
+
     <div id="app">
       <form id="loginform" v-on:submit.prevent="checkLogin()" method="post">
         <h2>Login</h2>
@@ -118,24 +121,8 @@
       </form>
 
       <div id="content" >
-        <button id="logout" onclick="logout()">Logout</button>
-        <h2>My ToDo List</h2>
-        <table class="todolist">
-          <tbody>
-            <tr v-for="(value, index) in todoList">
-              <td><img v-bind:src="value.src" alt="Mark Image"></td>
-              <td>{{ value.description }}</td>
-              <td> ~~~ </td>
-              <td>Deadline : {{ value.formatedDL }}</td>
-              <td>
-                <button class='finish' v-on:click="updateTodo(index)" v-if="value.buttonCondition === ''">Finished</button>
-                <button class='finish' v-else hidden>Finished</button>
-                <button class='delete' v-on:click="deleteTodo(index)" >Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table><br>
-        <button id="togle">Show Add Todo Form</button>
+        <!-- <todo :tlist='todoList' key=index @updatetodolist='updateStateList(index)' @deletetodolist='deleteStateList(index)'></todo> -->
+        <todo :tlist='todoList'></todo>
       </div>
 
       <form id="inputform" v-on:submit.prevent="addTodo()" method="post">

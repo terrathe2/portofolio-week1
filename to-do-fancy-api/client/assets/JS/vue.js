@@ -1,3 +1,90 @@
+Vue.component('list', {
+  props: ['idx', 'imgSrc', 'description', 'formatedDL', 'buttonCondition'],
+  template: `
+    <tr>
+      <td><img :src="imgSrc" alt="Mark Image"></td>
+      <td>{{ description }}</td>
+      <td> ~~~ </td>
+      <td>Deadline : {{ formatedDL }}</td>
+      <td>
+        <button class='finish' v-if="buttonCondition === ''" @click="updateTodoSendIdx()" >Finished</button>
+        <button class='finish' v-else hidden>Finished</button>
+        <button class='delete' @click="deleteTodoSendIdx()" >Delete</button>
+      </td>
+    </tr>
+  `,
+  methods: {
+    updateTodoSendIdx() {
+      this.$emit('changeStatus', {
+        key: this.key
+      })
+    },
+
+    deleteTodoSendIdx() {
+      this.$emit('deleteList', {
+        key: this.key
+      })
+    }
+  },
+})
+
+Vue.component('todo', {
+  props: ['tlist'],
+  template: `
+    <div class='todoContent'>
+      <button id="logout" onclick="logout()">Logout</button>
+      <h2>My ToDo List</h2>
+      <table class="todolist">
+        <tbody>
+          <list v-for="(value, index) in tlist" key="index" @changeStatus="updateTodo(index)" @deleteList="deleteTodo(index)" idx="index" :imgSrc="value.src" :description="value.description" :formatedDL="value.formatedDL" :buttonCondition="value.buttonCondition"></list>
+        </tbody>
+      </table><br>
+      <button id="togle">Show Add Todo Form</button>
+    </div>
+  `,
+  methods: {
+    updateTodo(index) {
+      // console.log(index);
+      let id = this.tlist[index].id
+      // console.log(id);
+      axios.put('http://localhost:3000/todos/update/'+id)
+      .then((response) => {
+        let buttonCondition = 'hidden'
+        let src = 'assets/images/true.png'
+
+        this.tlist[index].src = src
+        this.tlist[index].buttonCondition = buttonCondition
+      }).catch((reason) => {
+        console.log("ERROR, "+reason);
+      })
+    },
+
+    deleteTodo(index) {
+      // console.log(index);
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to read this todo!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((deleted) => {
+        if (deleted) {
+          let id = this.tlist[index].id
+          axios.delete('http://localhost:3000/todos/delete/'+id)
+          .then((response) => {
+            this.tlist.splice(index, 1)
+            swal("Your todo has been deleted", {
+              icon: "success",
+            });
+          }).catch((reason) => {
+            console.log("ERROR, "+reason);
+          })
+        }
+      });
+    }
+  }
+})
+
 new Vue({
   el: '#app',
   data: {
@@ -9,7 +96,7 @@ new Vue({
       let token = localStorage.getItem('token')
 
       axios.get('http://localhost:3000/todos/'+token).then((response) => {
-        console.log(response.data.data);
+        // console.log(response.data.data);
         if (response.data.data) {
           let tombol = ''
           let mark = ''
@@ -53,7 +140,6 @@ new Vue({
       axios.post('http://localhost:3000/users/login', inputData)
       .then((response) => {
         if (!response.data.data) {
-          // $("#logerror").html(response.message)
           this.errorMessage = response.data.message
         } else {
           localStorage.setItem('token', response.data.data)
@@ -74,7 +160,6 @@ new Vue({
       axios.post('http://localhost:3000/users/register', inputData)
       .then((response) => {
         if (!response.data.data) {
-          // $("#signerror").html(response.message)
           this.errorMessage = response.data.message
         } else {
           localStorage.setItem('token', response.data.data)
@@ -84,12 +169,6 @@ new Vue({
         console.log("ERROR, "+reason);
       })
     },
-
-    // logout() {
-    //   localStorage.removeItem('token')
-    //   alert("Byeeeeee Darling")
-    //   window.location.reload()
-    // },
 
     addTodo() {
       let inputData = {
@@ -106,39 +185,19 @@ new Vue({
       })
     },
 
-    updateTodo(index) {
-      let id = this.todoList[index].id
-      axios.put('http://localhost:3000/todos/update/'+id)
-      .then((response) => {
-        this.todoList[index].buttonCondition = "hidden"
-        this.todoList[index].src = "assets/images/true.png"
-      }).catch((reason) => {
-        console.log("ERROR, "+reason);
-      })
-    },
+    // updateStateList(index) {
+    //   console.log("DIMARI", index);
+    //
+    //   // this.todoList[index].buttonCondition = 'hidden'
+    //   // this.todoList[index].src = 'assets/images/true.png'
+    //   //
+    //   // console.log(this.todoList);
+    // },
 
-    deleteTodo(index) {
-      swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to read this todo!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      }).then((deleted) => {
-        if (deleted) {
-          let id = this.todoList[index].id
-          axios.delete('http://localhost:3000/todos/delete/'+id)
-          .then((response) => {
-            this.todoList.splice(index, 1)
-            swal("Your todo has been deleted", {
-              icon: "success",
-            });
-          }).catch((reason) => {
-            console.log("ERROR, "+reason);
-          })
-        }
-      });
-    }
+    // deleteStateList(index) {
+    //   // console.log("DIMARI", index);
+    //   this.todoList.splice(index, 1)
+    // }
   },
 
   mounted: function(){
