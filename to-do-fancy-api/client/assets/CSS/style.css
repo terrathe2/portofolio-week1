@@ -28,6 +28,8 @@ body{
   box-shadow: 1px 1px 20px rgba(0,0,0,1);
   animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 	-webkit-animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  -moz-animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  -o-animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
 
 #loginform h2, #registerform h2{
@@ -209,8 +211,10 @@ a.back:hover{
   background: orange;
   padding: 1%;
   color: white;
-	-webkit-animation: text-flicker-in-glow 4s linear both;
 	animation: text-flicker-in-glow 4s linear both;
+  -webkit-animation: text-flicker-in-glow 4s linear both;
+  -moz-animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  -o-animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
 
 .todolist{
