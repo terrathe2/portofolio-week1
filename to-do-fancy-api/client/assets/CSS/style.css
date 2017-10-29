@@ -339,7 +339,8 @@ a.back:hover{
 @media screen and (max-width: 980px) {
   body {
       width: 100%;
-      background: url('../images/M-todoapp.jpg') no-repeat fixed;
+      background: url('../images/M-todoapp.jpg') fixed;
+      background-repeat: repeat-y;
       background-size: cover;
   }
 
@@ -367,7 +368,8 @@ a.back:hover{
 @media screen and (max-width: 500px) {
   body {
       width: 100%;
-      background: url('../images/M-todoapp.jpg') no-repeat fixed;
+      background: url('../images/M-todoapp.jpg') fixed;
+      background-repeat: repeat-y;
       background-size: cover;
   }
 
