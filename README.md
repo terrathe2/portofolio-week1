@@ -1,4 +1,4 @@
-# Portofolio-Week1
+# Portofolio-Week 1 & 2
 My Portofolio Exercise on Hacktiv8
 
 ### List of Exercise :
