@@ -213,8 +213,8 @@ a.back:hover{
   color: white;
 	animation: text-flicker-in-glow 4s linear both;
   -webkit-animation: text-flicker-in-glow 4s linear both;
-  -moz-animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-  -o-animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  -moz-animation: text-flicker-in-glow 4s linear both;
+  -o-animation: text-flicker-in-glow 4s linear both;
 }
 
 .todolist{
