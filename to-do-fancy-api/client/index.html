@@ -6,6 +6,9 @@
     <!-- <script type="text/javascript" href="/assets/JS/jquery.3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="/assets/CSS/style.css">
+    <link rel="stylesheet" href="assets/CSS/animation.css">
+    <link rel="icon" href="assets/images/pencilicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <script
 			  src="https://code.jquery.com/jquery-3.2.1.min.js"
 			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -27,10 +30,10 @@
             userID: response.authResponse.userID
           }
 
-          console.log(inputData);
+          // console.log(inputData);
           $.ajax({
             type: 'post',
-            url: 'http://localhost:3000/users/fblogin',
+            url: 'http://35.201.25.23:3000/users/fblogin',
             data: inputData,
             dataType: 'json',
             success: function(respon){
@@ -126,7 +129,7 @@
       </div>
 
       <form id="inputform" v-on:submit.prevent="addTodo()" method="post">
-        <textarea name="description" rows="8" cols="50" placeholder="Description" required></textarea><br><br>
+        <textarea name="description" rows="8" placeholder="Description" required></textarea><br><br>
         <input type="date" name="deadline" > <span>YYYY/MM/DD</span><br><br>
         <input type="submit" name="submit" value="Add Todo">
       </form>
@@ -164,7 +167,7 @@
             $(this).text("Show Add Todo Form").css({'background-color':'orange', 'color':'white'})
           }
 
-          $('#inputform').toggle(200)
+          $('#inputform').slideToggle(200)
         })
     </script>
   </body>
